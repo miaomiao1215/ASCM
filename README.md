@@ -1,5 +1,5 @@
 # ASCM
-Our work " ASCM An Answer Space Clustered Prompting Method without Answer Engineering" is presented on ACL 2022 (Findings).
+Our work " ASCM: An Answer Space Clustered Prompting Method without Answer Engineering" is presented on ACL 2022 (Findings).
 
 ASCM is a prompting learning method, focusing on text classification adn NLI tasks, which needs no answer engineering by SCM and SI. SCM (FC + BN + Tanh) is used to transform PLM-encoded token embeddings to another embedding space where words cluster based on semantics or some relationships. And SI is used to initiate additional neural networks (SCM and SC) and attain significant improvements on few-shot tasks. SL (stair learning) is an iterative semi-supervised learning method for exploiting unlabeled datasets.
 
