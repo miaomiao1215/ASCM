@@ -28,7 +28,7 @@ python word2vec/train.py --dataset yahoo \ ##[yahoo, yelp, agnews, mnli];
 3. train ASCM+SL/iPET model: train_ascm.py/train_ipet.py or train ASCM model (comment the iterative parts);  
 3.1 modify the code about pretrained roberta model path in train_ascm.py (line 18)/train_ipet.py(line 16);   
 3.2 modify the code about pretrained word2vec SCM and SC in train_lm.py(line 145: class_state_dict)  
-3.3 modify dataset path in train_ascm.py (line 31~102)/train_ipet.py (line 28~61);   
+3.3 modify dataset path in train_ascm.py (line 31-102)/train_ipet.py (line 28-61);   
 
 To accelerate the training process, you can reduce the frequency of evaluation or the number of unlabeled dataset in SL/iPET (unlabel_num_per_category in training_example_split.py).
 
