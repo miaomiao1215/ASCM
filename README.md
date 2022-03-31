@@ -14,9 +14,13 @@ ASCM is a prompting learning method, focusing on text classification and NLI tas
 ## Training step:
 1. Prepare data:  training_example_split.py
 2. Prepare word2vec model for initialization of SCM and SC
+```
   (1) train task-specific word2vec model.: word2vec/word2vec.py or download pre-trained word2vec embeddings such as word2vec-google-news-300.gz (better).
+```
   (2) generate synonym dataset: word2vec/select_sim_word.py (For MNLI task, you can use the manual designed synonym dataset introduced in appendix)
+```
   (3) skip this step or filter repeating words such as "Yes" and "Yes!!!" and wrong words such as Realtionship
+```
   (4) pre-train SCM and SC layer: word2vec/train.py
 
 3. train ASCM+SL/iPET model: train_ascm.py/train_ipet.py or train ASCM model (comment the iterative parts); 
