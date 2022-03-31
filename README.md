@@ -43,7 +43,7 @@ To accelerate the training process, you can reduce the frequency of evaluation o
 (yahoo, number of labled samples = 10)use command 
 
 ```
-python train_lm.py --lm_training --pretrain_heads \
+python train_lm.py --lm_training \
      --dataset YahooAnswers \ ##[YahooAnswers, YelpFull, AGNews, MNLI]
      --batch_size 8 \
      --test_batch_size 8 \
