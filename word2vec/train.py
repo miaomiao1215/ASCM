@@ -34,6 +34,9 @@ parser.add_argument("--eval_only", action='store_true', default=False, help="do 
 parser.add_argument("--dataset", default='yahoo', type=str, help="do predict")
 parser.add_argument("--num_class", default=10, type=int, help="do predict")
 
+parser.add_argument("--base_model", default='roberta', type=str, help="Pretrain model.")
+parser.add_argument("--pretrain_model_path", default='/xxx/pretrain_model/roberta_large', type=str, required=False, help="Path to data.")
+
 parser.add_argument("--batch_size", default=16, type=int, help="Batch size per GPU/CPU for training.", )
 parser.add_argument("--test_batch_size", default=16, type=int, help="Batch size per GPU/CPU for training.", )
 parser.add_argument("--learning_rate", default=1e-5, type=float, help="The initial learning rate for Adam.")
@@ -96,10 +99,10 @@ def main():
     pin_memory = True if use_gpu else False
 
     # tokenizer = BartTokenizer.from_pretrained('/home/wangzhen/bert-master/pretrain_model/bart_large')
-    tokenizer = RobertaTokenizer.from_pretrained('/home/wangzhen/bert-master/pretrain_model/roberta_large')
-    token_embedding = RobertaForMaskedLM.from_pretrained('/home/wangzhen/bert-master/pretrain_model/roberta_large').lm_head.decoder.state_dict()['weight']
+    tokenizer = RobertaTokenizer.from_pretrained(args.pretrain_model_path)
+    token_embedding = RobertaForMaskedLM.from_pretrained(args.pretrain_model_path).lm_head.decoder.state_dict()['weight']
     # token_embedding = BartForConditionalGeneration.from_pretrained('/home/wangzhen/bert-master/pretrain_model/bart_large').lm_head.state_dict()['weight']
-    train_dataset = Sim_Word('./word2vec_synonyms/%s_select.txt'%args.dataset, tokenizer, token_embedding)
+    train_dataset = Sim_Word('./word2vec_synonyms/%s.txt'%args.dataset, tokenizer, token_embedding)
     label_list = train_dataset.label_list
     weight_list = torch.zeros(label_list.shape[0])
     for label_i in range(args.num_class):
