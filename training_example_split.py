@@ -43,23 +43,23 @@ def csv_write(examples_dict, save_dir):
 
 
 parser = argparse.ArgumentParser()
-parser.add_argument("--ori_train_csv_path", default='/xxx/dataset/yahoo_answers_csv/train.csv', type=str, help="")
-parser.add_argument("--train_csv_save_path", default='/xxx/dataset/yahoo_answers_csv/train_select_1000_2.csv', type=str, help="")
-parser.add_argument("--unlabel_csv_save_path", default='/xxx/dataset/yahoo_answers_csv/unlabeled_select_1000_2.csv', type=str, help="")
-parser.add_argument("--num_class", default=10, type=int, help="")
-parser.add_argument("--train_num_category", default=10, type=int, help="")
+parser.add_argument("--ori_train_csv_path", default='/xxx/ASCM_main/data/ag_news_csv/train.csv', type=str, help="")
+parser.add_argument("--train_csv_save_path", default='/xxx/ASCM_main/data/ag_news_csv/train_select_10_2.csv', type=str, help="")
+parser.add_argument("--unlabel_csv_save_path", default='/xxx/ASCM_main/data/ag_news_csv/unlabeled_select_10_2.csv', type=str, help="")
+parser.add_argument("--num_class", default=4, type=int, help="")## YahooAnswers: 10; YelpFull: 5; AGNew: 4; MNLI: 3;
+parser.add_argument("--train_num", default=10, type=int, help="")
 parser.add_argument("--unlabel_num_per_category", default=10000, type=int, help="")
 parser.add_argument("--lable_index_csv", default=0, type=int, help="")
 args = parser.parse_args()
 
+
 if __name__ == "__main__":
     assert os.path.exists(args.ori_train_csv_path), 'Wrong occured!!! %s not exist!!!'%args.ori_train_csv_path
 
-    
     examples_dict = create_example_csv(args.ori_train_csv_path, args.lable_index_csv)
     print('labels: {}'.format(examples_dict.keys()))
 
-    train_num_category_list = eq_div(args.train_num_category, args.num_class)
+    train_num_category_list = eq_div(args.train_num, args.num_class)
     train_examples_dict, unlable_example_dict = example_split(examples_dict, train_num_category_list, args.unlabel_num_per_category)
 
     csv_write(train_examples_dict, args.train_csv_save_path)
