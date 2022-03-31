@@ -19,7 +19,7 @@ ASCM is a prompting learning method, focusing on text classification and NLI tas
 2.3 skip this step or filter repeating words such as "Yes" and "Yes!!!" and wrong words such as Realtionship  
 2.4 pre-train SCM and SC layer: word2vec/train.py  
 
-3. train ASCM+SL/iPET model: train_ascm.py/train_ipet.py or train ASCM model (comment the iterative parts); 
+3. train ASCM+SL/iPET model: train_ascm.py/train_ipet.py or train ASCM model (comment the iterative parts);  
 3.1 modify the code about pretrained roberta in train_ascm.py/train_ipet.py;   
 3.2 modify the code about pretrained word2vec SCM and SC in train_lm.py(line 145: class_state_dict)  
 3.3 modify dataset path in train_ascm.py/train_ipet.py;   
