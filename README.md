@@ -30,13 +30,20 @@ python word2vec/train.py --dataset yahoo \ ##[yahoo, yelp, agnews, mnli];
 3.2 modify the code about pretrained word2vec SCM and SC in train_lm.py(line 145: class_state_dict)  
 3.3 modify dataset path in train_ascm.py (line 31-102)/train_ipet.py (line 28-61);   
 
+```
+python train_ascm.py --dataset YahooAnswers \ ##[YahooAnswers, YelpFull, AGNews, MNLI]
+     --work_dir 10_lm \
+     --train_num 10 \
+     --gpu_id 0 \
+     --output_dir ./log \
+```
 To accelerate the training process, you can reduce the frequency of evaluation or the number of unlabeled dataset in SL/iPET (unlabel_num_per_category in training_example_split.py).
 
 ## Training ASCM without SL.
 (yahoo, number of labled samples = 10)use command 
 
 ```
-python train_lm_preword2vec.py --lm_training --pretrain_heads \
+python train_lm.py --lm_training --pretrain_heads \
      --dataset YahooAnswers \ ##[YahooAnswers, YelpFull, AGNews, MNLI]
      --batch_size 8 \
      --test_batch_size 8 \
