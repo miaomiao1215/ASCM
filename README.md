@@ -51,7 +51,6 @@ python train_lm.py --lm_training \
      --num_class 10 \ ##YahooAnswers: 10; YelpFull: 5; AGNew: 4; MNLI: 3;
      --trainset /xxx/dataset/yahoo_answers_csv/train_select_10.csv \
      --testset /xxx/dataset/yahoo_answers_csv/test_select_10.csv \
-     --pretrainset /xxx/dataset/yahoo_answers_csv/unlabeled_select_10.csv \
      --unlabelset /xxx/dataset/yahoo_answers_csv/unlabeled_select_10.csv \
      --model transformer_pre_fc_tanh_init \
      --base_model roberta \
