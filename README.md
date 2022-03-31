@@ -13,7 +13,7 @@ ASCM is a prompting learning method, focusing on text classification and NLI tas
 
 ## Training step:
 1. Prepare data:  training_example_split.py (a random-splited AG's News dataset can be found in data folder with 10 labeled samples and 4x10000 unlabeled samples)
-2. Prepare word2vec model for initialization of SCM and SC  
+2. Prepare word2vec model for initialization of SCM and SC (SI: Synonym Initialization)  
 2.1 train task-specific word2vec model.: word2vec/word2vec.py or download pre-trained word2vec embeddings such as word2vec-google-news-300.gz (better).  
 2.2 generate synonym dataset: word2vec/select_sim_word.py (For MNLI task, you can use the manual designed synonym dataset (folder word2vec/word2vec_synonyms/mnli_manual_designed.txt)introduced in appendix, and modify line 105 in word2vec/train.py to "train_dataset = Sim_Word('./word2vec_synonyms/%s_manual_designed.txt'%args.dataset, tokenizer, token_embedding)")  
 2.3 skip this step or filter repeating words such as "Yes" and "Yes!!!" and wrong words such as Realtionship  
@@ -27,7 +27,7 @@ python word2vec/train.py --dataset yahoo \ ##[yahoo, yelp, agnews, mnli];
 
 3. train ASCM+SL/iPET model: train_ascm.py/train_ipet.py or train ASCM model (comment the iterative parts);  
 3.1 modify the code about pretrained roberta model path in train_ascm.py (line 18)/train_ipet.py(line 16);   
-3.2 modify the code about pretrained word2vec SCM and SC in train_lm.py(line 145: class_state_dict)  
+3.2 modify the code about pretrained SCM and SC (step 2.4, select the best model) in train_lm.py(line 145: class_state_dict)  
 3.3 modify dataset path in train_ascm.py (line 31-102)/train_ipet.py (line 28-61);   
 
 ```
