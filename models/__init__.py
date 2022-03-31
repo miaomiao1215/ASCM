@@ -6,7 +6,7 @@ __factory = {
     'transformer_pvp': Transformer_PVP,
     'transformer': Transformer_final,
     'transformer_pre_fc_tanh_init': Transformer_Pre_fc_tanh_init,
-    'transformer_pre_init': Transformer_Pre_init,
+    'transformer_pre_init': Transformer_Pre_fc_tanh_init,
 
 }
 

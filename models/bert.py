@@ -18,7 +18,7 @@ from transformers import InputExample, AdamW, PreTrainedTokenizer, BertForMasked
 import time
 import os 
 
-__all__ = ['Transformer_PVP', 'Transformer_Pre_fc_tanh_pro', 'Transformer_Pre_fc_tanh_init', 'Transformer_PET']
+__all__ = ['Transformer_PVP', 'Transformer_Pre_fc_tanh_pro', 'Transformer_Pre_fc_tanh_init', 'Transformer_final']
 
 
 MODEL_CLASSES = {
