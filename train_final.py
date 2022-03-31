@@ -238,8 +238,8 @@ def main():
 
 
     # pretrain heads of model
-    if args.pretrain_heads:
-        pretrain_model(model, lmtrainloader, tokenizer, config, pin_memory, criterion, use_gpu, args)
+    # if args.pretrain_heads:
+    #     pretrain_model(model, lmtrainloader, tokenizer, config, pin_memory, criterion, use_gpu, args)
 
     optimizer = AdamW(model.parameters(), lr=args.learning_rate, eps=1e-8)
 
