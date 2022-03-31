@@ -20,7 +20,7 @@ parser.add_argument("--pretrain_model_path", default='/xxx/bert-master/pretrain_
 parser.add_argument('--unlable_loader', default='Data_Loader_unlabel_pet', type=str, help="unlabel dataset_loader")#Data_Loader_unlabel_pet_add_low_v2
 
 parser.add_argument("--kl_loss", action='store_true', default=False, help="do kl loss")
-parser.add_argument("--coef_loss_lm", default=0.0001, type=float, help="lm train loss coef")
+parser.add_argument("--coef_loss_lm", default=1.0, type=float, help="lm train loss coef")
 parser.add_argument("--gpu_id", default='2', type=str, help="gpu devices for using.")
 
 parser.add_argument("--output_dir", default="./log/", type=str, required=False, help="The output directory.")
