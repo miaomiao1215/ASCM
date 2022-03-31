@@ -15,7 +15,7 @@ ASCM is a prompting learning method, focusing on text classification and NLI tas
 1. Prepare data:  training_example_split.py
 2. Prepare word2vec model for initialization of SCM and SC
 (1) train task-specific word2vec model.: word2vec/word2vec.py or download pre-trained word2vec embeddings such as word2vec-google-news-300.gz (better).
-(2) generate synonym dataset: word2vec/select_sim_word.py
+(2) generate synonym dataset: word2vec/select_sim_word.py (For MNLI task, you can use the manual designed synonym dataset introduced in appendix)
 (3) skip this step or filter repeating words such as "Yes" and "Yes!!!" and wrong words such as Realtionship
 (4) pre-train SCM and SC layer: word2vec/train.py
 3. train ASCM+SL/iPET model: train_ascm.py/train_ipet.py or train ASCM model (comment the iterative parts); 
@@ -33,8 +33,8 @@ python train_lm_preword2vec.py --lm_training --pretrain_heads \
      --dataset YahooAnswers \ ##[YahooAnswers, YelpFull, AGNews, MNLI]
      --batch_size 8
      --test_batch_size 8
-     --pattern_id 0 \##YahooAnswers: 0-5; YelpFull: 0-3; AGNew: 0-5; MNLI: 0-1;
-     --num_class 10 \##YahooAnswers: 10; YelpFull: 5; AGNew: 4; MNLI: 3;
+     --pattern_id 0 \ ##YahooAnswers: 0-5; YelpFull: 0-3; AGNew: 0-5; MNLI: 0-1;
+     --num_class 10 \ ##YahooAnswers: 10; YelpFull: 5; AGNew: 4; MNLI: 3;
      --trainset /xxx/dataset/yahoo_answers_csv/train_select_10.csv \
      --testset /xxx/dataset/yahoo_answers_csv/test_select_10.csv \
      --pretrainset /xxx/dataset/yahoo_answers_csv/unlabeled_select_10.csv \
