@@ -126,7 +126,7 @@ for pattern_i in range(dataset_dict[args.dataset]['pattern_num']):
     if args.dataset == "YahooAnswers":
         eval_epochs = int(np.ceil(eval_epochs * 1.25))
     print('===>start pretrain model with labled data')
-    command_base = 'python train_lm.py --lm_training --pretrain_heads'
+    command_base = 'python train_lm.py --lm_training '
     command_base += ' --dataset %s'%args.dataset
     command_base += ' --batch_size %i'%batch_size
     command_base += ' --test_batch_size %i'%test_batch_size
