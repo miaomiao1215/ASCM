@@ -17,23 +17,29 @@ ASCM is a prompting learning method, focusing on text classification and NLI tas
 2.1 train task-specific word2vec model.: word2vec/word2vec.py or download pre-trained word2vec embeddings such as word2vec-google-news-300.gz (better).  
 2.2 generate synonym dataset: word2vec/select_sim_word.py (For MNLI task, you can use the manual designed synonym dataset introduced in appendix)  
 2.3 skip this step or filter repeating words such as "Yes" and "Yes!!!" and wrong words such as Realtionship  
-2.4 pre-train SCM and SC layer: word2vec/train.py  
+2.4 pre-train SCM and SC layer: 
+```
+python word2vec/train.py --dataset yahoo \ ##[yahoo, yelp, agnews, mnli];
+     --batch_size 8 \
+     --num_class 10 \ ##YahooAnswers: 10; YelpFull: 5; AGNew: 4; MNLI: 3;
+     --gpu_id 0 \
+```
 
 3. train ASCM+SL/iPET model: train_ascm.py/train_ipet.py or train ASCM model (comment the iterative parts);  
-3.1 modify the code about pretrained roberta in train_ascm.py/train_ipet.py;   
+3.1 modify the code about pretrained roberta model path in train_ascm.py (line 18)/train_ipet.py(line 16);   
 3.2 modify the code about pretrained word2vec SCM and SC in train_lm.py(line 145: class_state_dict)  
-3.3 modify dataset path in train_ascm.py/train_ipet.py;   
+3.3 modify dataset path in train_ascm.py (line 31~102)/train_ipet.py (line 28~61);   
 
 To accelerate the training process, you can reduce the frequency of evaluation or the number of unlabeled dataset in SL/iPET (unlabel_num_per_category in training_example_split.py).
 
 ## Training ASCM without SL.
-use command
+(yahoo, number of labled samples = 10)use command 
 
-```bash
+```
 python train_lm_preword2vec.py --lm_training --pretrain_heads \
      --dataset YahooAnswers \ ##[YahooAnswers, YelpFull, AGNews, MNLI]
-     --batch_size 8
-     --test_batch_size 8
+     --batch_size 8 \
+     --test_batch_size 8 \
      --pattern_id 0 \ ##YahooAnswers: 0-5; YelpFull: 0-3; AGNew: 0-5; MNLI: 0-1;
      --num_class 10 \ ##YahooAnswers: 10; YelpFull: 5; AGNew: 4; MNLI: 3;
      --trainset /xxx/dataset/yahoo_answers_csv/train_select_10.csv \
@@ -43,9 +49,9 @@ python train_lm_preword2vec.py --lm_training --pretrain_heads \
      --model transformer_pre_fc_tanh_init \
      --base_model roberta \
      --pretrain_model_path /xxx/pretrain_model/roberta_large \
-     --coef_loss_lm 1.0
+     --coef_loss_lm 1.0 \
      --num_train_epochs 300 \
-     --eval_epochs 1 \
+     --eval_epochs 100 \
      --output_dir ./log \
      --tag pattern_0 \
      --gpu_id 0
