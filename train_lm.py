@@ -94,7 +94,7 @@ parser.add_argument("--adam_epsilon", default=1e-8, type=float, help="Epsilon fo
 
 parser.add_argument("--num_train_epochs", default=3, type=int, help="Total number of training epochs to perform.")
 parser.add_argument("--pretrain_heads", action='store_true', default=False, help="do predict")
-parser.add_argument("--num_pretrain_epochs", default=3, type=int, help="Total number of training epochs to perform.")
+parser.add_argument("--num_pretrain_epochs", default=0, type=int, help="Total number of training epochs to perform.")
 parser.add_argument("--eval_epochs", default=1, type=float, help="Total number of training epochs to perform.")
 parser.add_argument("--seed", default=777, type=int, help="random seed for initialization")
 parser.add_argument('--print_steps', type=int, default=400, help="print frequency")
@@ -398,17 +398,17 @@ def train(model, optimizer, lr_scheduler, criterion, trainloader, lmtrainloader,
         if args.kl_loss:
             if args.ce_kl_loss:
                 if torch.sum(bool_unlabel) > 0 and torch.sum(~bool_unlabel) > 0:
-                    kl_loss = distillation_loss_pre_no_temp(x_encoder_mask_pre[bool_unlabel], probs_all_labels[bool_unlabel], temperature=args.temperature)
+                    kl_loss = distillation_loss(x_encoder_mask_pre[bool_unlabel], probs_all_labels[bool_unlabel], temperature=args.temperature)
                     acc, ce_loss = criterion(x_encoder_mask_pre[~bool_unlabel], labels[~bool_unlabel], labels_gt[~bool_unlabel])
                     loss_all = kl_loss + args.ce_loss_coef * ce_loss
                 elif torch.sum(bool_unlabel) > 0:
-                    kl_loss = distillation_loss_pre_no_temp(x_encoder_mask_pre[bool_unlabel], probs_all_labels[bool_unlabel], temperature=args.temperature)
+                    kl_loss = distillation_loss(x_encoder_mask_pre[bool_unlabel], probs_all_labels[bool_unlabel], temperature=args.temperature)
                     loss_all = kl_loss
                 else:
                     acc, ce_loss = criterion(x_encoder_mask_pre[~bool_unlabel], labels[~bool_unlabel], labels_gt[~bool_unlabel])
                     loss_all = args.ce_loss_coef * ce_loss
             else:
-                kl_loss = distillation_loss_pre_no_temp(x_encoder_mask_pre, probs_all_labels, temperature=args.temperature)
+                kl_loss = distillation_loss(x_encoder_mask_pre, probs_all_labels, temperature=args.temperature)
                 loss_all = kl_loss
 
         if loss_all != None:

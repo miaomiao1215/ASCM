@@ -9,7 +9,7 @@ from torch.nn import functional as F
 
 def distillation_loss(predictions, targets, temperature):
     """Compute the distillation loss (KL divergence between predictions and targets) as described in the PET paper"""
-    p = F.log_softmax(predictions / temperature, dim=1)
+    p = F.log_softmax(predictions, dim=1)
     q = F.softmax(targets / temperature, dim=1)
 
     return F.kl_div(p, q, reduction='sum') / predictions.shape[0]

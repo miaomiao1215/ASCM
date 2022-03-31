@@ -47,8 +47,8 @@ parser.add_argument("--ori_train_csv_path", default='/xxx/dataset/yahoo_answers_
 parser.add_argument("--train_csv_save_path", default='/xxx/dataset/yahoo_answers_csv/train_select_1000_2.csv', type=str, help="")
 parser.add_argument("--unlabel_csv_save_path", default='/xxx/dataset/yahoo_answers_csv/unlabeled_select_1000_2.csv', type=str, help="")
 parser.add_argument("--num_class", default=10, type=int, help="")
-parser.add_argument("--train_num_category", default=1000, type=int, help="")
-parser.add_argument("--unlabel_num_per_category", default=30000, type=int, help="")
+parser.add_argument("--train_num_category", default=10, type=int, help="")
+parser.add_argument("--unlabel_num_per_category", default=10000, type=int, help="")
 parser.add_argument("--lable_index_csv", default=0, type=int, help="")
 args = parser.parse_args()
 

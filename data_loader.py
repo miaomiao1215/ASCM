@@ -6,11 +6,7 @@ import torch
 from torch.utils.data import Dataset
 import random
 import copy
-from utils import InputExample, InputFeatures, DictDataset, get_unlabel_ratio, get_unlabel_ratio_fc_center, \
-    get_hard_unlabel_ratio, get_unlabel_ratio_train_center, \
-    get_unlabel_low_high_category_v8, get_unlabel_low_high_category_v9, \
-    get_unlabel_pet, get_unlabel_low_high_category, get_unlabel_pet_add_low_v2, get_unlabel_pet_add_low, \
-    get_unlabel_final_avg
+from utils import InputExample, InputFeatures, DictDataset, get_unlabel_pet, get_unlabel_final_avg
 from transformers import GPT2Tokenizer
 from typing import Tuple, List, Union, Dict
 
