@@ -666,3 +666,14 @@ def get_unlabel_best_model(dir, save_tag, retrain_rounds):
 
     return model_dict_list[best_index]
 
+def update_kl_loss_temp(unlabel_probs_pre_list=None, unlabel_probs_all_list=None):
+
+    probs_pre_sort = torch.sort(torch.tensor(unlabel_probs_pre_list))[1]
+    middle_index = probs_pre_sort[len(unlabel_probs_pre_list) // 2]
+    middle_pseudo_label_all = unlabel_probs_all_list[middle_index]
+    for temp_i in np.arange(1.0, 0.05, -0.05):
+        if torch.max(F.softmax(middle_pseudo_label_all / temp_i, dim=0)) > 0.80:
+            break
+    return temp_i
+
+    

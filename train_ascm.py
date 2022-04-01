@@ -104,7 +104,7 @@ else:
 
 train_epoch_dict = {
     10: {
-        'train_epoch': 300, 'eval_epochs': 200, 'pretrain_epoch': 0, 'ipet_round': 3, 'retrain_step': 300,       
+        'train_epoch': 500, 'eval_epochs': 200, 'pretrain_epoch': 0, 'ipet_round': 3, 'retrain_step': 300,       
     },
     50: {
         'train_epoch': 100, 'eval_epochs': 40, 'pretrain_epoch': 0, 'ipet_round': 2, 'retrain_step': 300,      

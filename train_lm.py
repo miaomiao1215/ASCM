@@ -45,7 +45,7 @@ from transformers import BertConfig, BertTokenizer
 from loss import CrossEntropy_acc, distillation_loss
 from torch.optim import Adam
 import models
-from utils import Logger, set_random_seed, AverageMeter, get_pre_info, get_specific_label_info
+from utils import Logger, set_random_seed, AverageMeter, get_pre_info, get_specific_label_info, update_kl_loss_temp
 from torch.nn.parallel import DistributedDataParallel
 
 
@@ -215,7 +215,7 @@ def main():
             drop_last=True,
             shuffle=True,
         )
-        temperature = update_kl_loss_temp_v2(unlabel_probs_pre_list=unlabel_loader.unlabel_probs_pre_select_list, unlabel_probs_all_list=unlabel_loader.unlabel_probs_all_select_list)
+        temperature = update_kl_loss_temp(unlabel_probs_pre_list=unlabel_loader.unlabel_probs_pre_select_list, unlabel_probs_all_list=unlabel_loader.unlabel_probs_all_select_list)
         args.temperature = temperature
         print('======temperature updating to {}'.format(temperature))
 
