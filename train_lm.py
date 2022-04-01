@@ -215,6 +215,9 @@ def main():
             drop_last=True,
             shuffle=True,
         )
+        temperature = update_kl_loss_temp_v2(unlabel_probs_pre_list=unlabel_loader.unlabel_probs_pre_select_list, unlabel_probs_all_list=unlabel_loader.unlabel_probs_all_select_list)
+        args.temperature = temperature
+        print('======temperature updating to {}'.format(temperature))
 
 
 
