@@ -39,6 +39,8 @@ python train_ascm.py --dataset YahooAnswers \ ##[YahooAnswers, YelpFull, AGNews,
 ```
 To accelerate the training process, you can reduce the frequency of evaluation or the number of unlabeled dataset in SL/iPET (unlabel_num_per_category in training_example_split.py).
 
+Notes: We notice the training of final sequence classification model (last step introduced in the last paragragh of section 3.3) might trap in local gradient and results in a low performance at a low probability. However, it can be solved easily by change the random seed in "train_final.py". 
+
 ## Training ASCM without SL.
 (yahoo, number of labled samples = 10)use command 
 
